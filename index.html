@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seni Seviyorum</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Genel Ayarlar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            background-image: radial-gradient(circle at center, #ffecf2 0%, #ffe4e1 100%);
+            font-family: 'Montserrat', sans-serif;
+            color: #4a4a4a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Arkaplan Kalp Animasyonu */
+        .bg-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -100px;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 105, 180, 0.3);
+            transform: rotate(45deg);
+            animation: fly 10s linear infinite;
+        }
+        
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: inherit;
+            border-radius: 50%;
+        }
+        .heart::before { top: -10px; left: 0; }
+        .heart::after { top: 0; left: -10px; }
+
+        @keyframes fly {
+            0% { transform: translateY(0) rotate(45deg) scale(0.5); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-120vh) rotate(45deg) scale(1.2); opacity: 0; }
+        }
+
+        /* Ana Kart Tasarımı */
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.6);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        /* Fotoğraf Galerisi */
+        .photo-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .photo-frame {
+            width: 140px;
+            height: 140px;
+            border: 5px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-frame:nth-child(1) { transform: rotate(-5deg); z-index: 1; }
+        .photo-frame:nth-child(2) { transform: rotate(3deg) scale(1.1); z-index: 2; border-color: #ffdde1; }
+        .photo-frame:nth-child(3) { transform: rotate(-3deg); z-index: 1; }
+
+        .photo-frame:hover {
+            transform: scale(1.2) rotate(0);
+            z-index: 10;
+        }
+
+        /* Yazı Alanı */
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #d6336c; /* Koyu pembe */
+            margin-bottom: 20px;
+        }
+
+        .message-content {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .highlight {
+            color: #d6336c;
+            font-weight: 600;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            margin-top: 30px;
+            color: #333;
+        }
+
+        .heart-icon {
+            color: #e31b23;
+            font-size: 1.5rem;
+            animation: beat 1s infinite alternate;
+            display: inline-block;
+        }
+
+        /* Animasyonlar */
+        @keyframes beat {
+            to { transform: scale(1.2); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobil Uyum */
+        @media (max-width: 500px) {
+            .container { padding: 25px; }
+            .photo-frame { width: 90px; height: 90px; }
+            h1 { font-size: 2rem; }
+            .message-content { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-hearts" id="heartsContainer"></div>
+
+    <div class="container">
+        <h1>Benim En Güzel Hikâyem</h1>
+        
+        <div class="photo-gallery">
+            <div class="photo-frame"><img src="foto1.png" alt="Biz"></div>
+            <div class="photo-frame"><img src="foto2.png" alt="Biz"></div>
+            <div class="photo-frame"><img src="foto3.png" alt="Biz"></div>
+        </div>
+
+        <div class="message-content">
+            <p>Eğer şu an bu mesajı okuyorsan, bil ki seni düşünmediğim tek bir an bile yok. Bu kartı her okuttuğunda sana şunu hatırlatsın istedim: <strong>Hayatımda olan en doğru şey sensin.</strong></p>
+            <br>
+            <p>Doğum günün olabilir, sıradan bir gün olabilir… Ama sen benim için her günün en özel sebebisin.</p>
+            <br>
+            <p>7 yıldır elimi bırakmadın, gülüşünle yorulduğum anları aydınlattın, sessizliğinle bile bana huzur verdin. Yanımda olduğunda dünya daha sakin, daha güvenli, daha anlamlı.</p>
+            <br>
+            <p>Sen sadece sevdiğim kadın değil, <span class="highlight">en yakın dostum, evim, kalbimin en güzel alışkanlığısın.</span></p>
+            <br>
+            <p>Zaman geçiyor ama sana olan sevgim azalmıyor; aksine her gün biraz daha büyüyor. Gözlerinin içine her baktığımda, “iyi ki” dediğim binlerce sebep görüyorum.</p>
+            <br>
+            <p>Bugün, yarın ya da yıllar sonra… Yine bu mesajı okuduğunda bil ki kalbim aynı yerde: senin yanında.</p>
+            <br>
+            <p>İyi ki doğdun, iyi ki varsın, iyi ki hayatıma dokundun.</p>
+        </div>
+
+        <div class="signature">
+            Seni sevmek benim en güzel hikâyem. <span class="heart-icon">❤️</span>
+        </div>
+    </div>
+
+    <script>
+        // Arkaplan için rastgele uçuşan kalpler oluşturma
+        function createHearts() {
+            const container = document.getElementById('heartsContainer');
+            const heartCount = 15; // Kalp sayısı
+            
+            for(let i=0; i<heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
+    </script>
+</body>
+</html>
